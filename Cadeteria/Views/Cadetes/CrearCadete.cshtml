@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div>
+    <form asp-action="CrearCadete" asp-controller="Cadetes" method="post">
+        <div class="form-group col-6">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre">
+
+            <label for="direccion">Direccion</label>
+            <input type="text" class="form-control" id="direccion" name="direccion">
+
+            <label for="telefono">Telefono</label>
+            <input type="number" class="form-control" id="telefono" name="telefono">
+
+            </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
