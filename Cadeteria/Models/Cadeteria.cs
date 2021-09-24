@@ -4,30 +4,19 @@ using System.Text;
 
 namespace Cadeteria.Models
 { 
-	class Cadeteria
+	public class Cadeteria
 	{
-		private string nombre;
+		private List<Pedido> pedidos;
 		private List<Cadete> cadetes;
 
-		public Cadeteria(string nombre)
+		public List<Pedido> Pedidos { get => pedidos; set => pedidos = value; }
+		public List<Cadete> Cadetes { get => cadetes; set => cadetes = value; }
+
+		public Cadeteria()
 		{
-			this.nombre = nombre;
-			this.cadetes = new List<Cadete>();
+			Pedidos = new List<Pedido>();
+			Cadetes = new List<Cadete>();
 		}
 
-		public string Nombre { get => nombre; set => nombre = value; }
-		internal List<Cadete> Cadetes { get => cadetes; set => cadetes = value; }
-
-		public void mostrarCadetes()
-		{
-			int cont = 1;
-			Console.WriteLine("****CADETES****");
-			foreach(Cadete unCadete in cadetes)
-			{	
-				Console.WriteLine(cont+": ");
-				unCadete.mostrar();
-				cont++;
-			}
-		}
 	}
 }

@@ -6,7 +6,6 @@ namespace Cadeteria.Models
 {
 	public class Cadete
 	{
-		private static int id_cadete = 0;
 		private int id;
 		private string nombre;
 		private string direccion;
@@ -14,38 +13,38 @@ namespace Cadeteria.Models
 		private List<Pedido> pedidos;
 		private double jornal;
 
-		public Cadete(string nombre, string direccion, double telefono)
+		public Cadete(int id, string nombre, string direccion, double telefono)
 		{
-			this.id = id_cadete + 1;
+			this.id = id;
 			this.nombre = nombre;
 			this.direccion = direccion;
 			this.telefono = telefono;
-			this.pedidos = new List<Pedido>();
+			this.Pedidos = new List<Pedido>();
 		}
 
 		public int Id { get => id; set => id = value; }
 		public string Nombre { get => nombre; set => nombre = value; }
 		public string Direccion { get => direccion; set => direccion = value; }
 		public double Telefono { get => telefono; set => telefono = value; }
-		internal List<Pedido> Pedidos { get => pedidos; set => pedidos = value; }
+		public List<Pedido> Pedidos { get => pedidos; set => pedidos = value; }
 
 		public void agregarPedido(Pedido unPedido)
 		{
-			pedidos.Add(unPedido);
+			Pedidos.Add(unPedido);
 		}
 
 		public void mostrar()
 		{
 			Console.WriteLine("ID: " + this.id);
 			Console.WriteLine("Nombre: " +this.nombre);
-			Console.WriteLine("Pedidos entregados: " + cantPedidoEntregado());
+			Console.WriteLine("Pedidos entregados: " + cantidadPedidosEntregado());
 			Console.WriteLine("Jornal: $" +calcularJornal()+ "\n");
 		}
 
-		public int cantPedidoEntregado()
+		public int cantidadPedidosEntregado()
 		{
 			int cantEntregado=0;
-			foreach (Pedido unpedido in pedidos)
+			foreach (Pedido unpedido in Pedidos)
 			{
 				if(unpedido.Estado == Estado.Entregado)
 				{
@@ -55,9 +54,10 @@ namespace Cadeteria.Models
 			return cantEntregado;
 		}
 
+
 		public double calcularJornal()
 		{
-			this.jornal = 100 * cantPedidoEntregado();
+			this.jornal = 100 * cantidadPedidosEntregado();
 			return this.jornal;
 		}
 

@@ -13,7 +13,6 @@ namespace Cadeteria.Models
 
 	public class Pedido
 	{
-		private static int nro_pedido = 0;
 		private int nro;
 		private Estado estado;
 		private Cliente cliente;
@@ -24,9 +23,9 @@ namespace Cadeteria.Models
 		public string Observaciones { get => observaciones; set => observaciones = value; }
 		public Cliente Cliente { get => cliente; set => cliente = value; }
 
-		public Pedido(string observaciones, string nombre, string direccion, double telefono)
+		public Pedido(int nro, string observaciones, string nombre, string direccion, double telefono)
 		{
-			this.nro = nro_pedido + 1 ;
+			this.nro = nro ;
 			this.estado = Estado.Pendiente;
 			this.cliente = new Cliente(nombre,direccion,telefono);
 			this.observaciones = observaciones;

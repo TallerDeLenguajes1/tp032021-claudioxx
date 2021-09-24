@@ -20,7 +20,18 @@
             <label for="observaciones">Observaciones</label>
             <input type="text" class="form-control" id="observaciones" name="Observaciones">
 
+            <label for="cadetes">Cadete</label>
+            <select class="custom-select" id="cadetes" name="idCadete">
+                <option selected="selected">Seleccione un cadete</option>
+                @foreach (Cadete unCadete in Model)
+                {
+                    <option value="@unCadete.Id">@unCadete.Nombre</option>
+                }
+            </select>
+            <div class="text-center mt-2">
+                <button type="submit" class="btn btn-primary">Crear Pedido</button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        
     </form>
 </div>

@@ -9,19 +9,25 @@ namespace Cadeteria.Controllers
 {
 	public class CadetesController : Controller
 	{
-		private static List<Cadete> cadetes = new List<Cadete>();
+		private readonly DBTemporal _DB;
+
+		public CadetesController(DBTemporal DB)
+		{
+			_DB = DB;
+		}
 
 		public IActionResult Index()
 		{
-			return View(cadetes);
+			return View(_DB.cadeteria.Cadetes);
 		}
 
 		public IActionResult CrearCadete(string nombre, string direccion, double telefono)
 		{
-			Cadete unCadete = new Cadete(nombre, direccion, telefono);
 			if (nombre != null && direccion != null)
 			{
-				cadetes.Add(unCadete);
+				Cadete unCadete = new Cadete(_DB.cadeteria.Cadetes.Count()+1, nombre, direccion, telefono);
+				_DB.cadeteria.Cadetes.Add(unCadete);
+				_DB.guardarCadetes(_DB.cadeteria.Cadetes);
 				return Redirect("Index");
 			}
 			return View();
