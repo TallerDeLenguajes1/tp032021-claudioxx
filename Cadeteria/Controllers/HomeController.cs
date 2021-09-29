@@ -12,15 +12,17 @@ namespace Cadeteria.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly DBTemporal _DB;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, DBTemporal DB)
 		{
 			_logger = logger;
+			_DB = DB;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			return View(_DB);
 		}
 
 		public IActionResult Privacy()

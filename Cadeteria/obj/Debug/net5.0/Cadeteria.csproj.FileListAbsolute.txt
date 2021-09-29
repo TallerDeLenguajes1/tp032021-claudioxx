@@ -42,3 +42,4 @@ C:\Users\claud\Source\Repos\Taller2-2021\TP3\tp032021-claudioxx\Cadeteria\obj\De
 C:\Users\claud\Source\Repos\Taller2-2021\TP3\tp032021-claudioxx\Cadeteria\obj\Debug\net5.0\Razor\Views\Pedidos\Index.cshtml.g.cs
 C:\Users\claud\Source\Repos\Taller2-2021\TP3\tp032021-claudioxx\Cadeteria\obj\Debug\net5.0\Razor\Views\Pedidos\CrearPedido.cshtml.g.cs
 C:\Users\claud\Source\Repos\Taller2-2021\TP3\tp032021-claudioxx\Cadeteria\obj\Debug\net5.0\Razor\Views\Cadetes\CrearCadete.cshtml.g.cs
+C:\Users\claud\Source\Repos\Taller2-2021\TP3\tp032021-claudioxx\Cadeteria\obj\Debug\net5.0\Razor\Views\Cadetes\SelectCadeteAEditar.cshtml.g.cs

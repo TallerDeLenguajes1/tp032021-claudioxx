@@ -32,5 +32,36 @@ namespace Cadeteria.Controllers
 			}
 			return View();
 		}
+
+		public IActionResult SelectCadeteAEditar(int IdCadete)
+		{
+			Cadete unCadete = _DB.cadeteria.Cadetes.Find(unCadete => unCadete.Id == IdCadete);
+			return View(unCadete);
+		}
+
+		public IActionResult EditarCadete(string nombre, string direccion, double telefono,int IdCadete)
+		{
+			Cadete CadeteAModificar = _DB.cadeteria.Cadetes.Find(unCadete => unCadete.Id == IdCadete);
+
+			if (nombre != null && direccion != null && CadeteAModificar != null)
+			{
+				CadeteAModificar.Nombre = nombre;
+				CadeteAModificar.Direccion = direccion;
+				CadeteAModificar.Telefono = telefono;
+				_DB.guardarCadetes(_DB.cadeteria.Cadetes);
+			}
+			return Redirect("Index");
+		}
+
+		public IActionResult EliminarCadete(int IdCadete)
+		{
+			Cadete unCadete = _DB.cadeteria.Cadetes.Find(unCadete => unCadete.Id == IdCadete);
+			if (unCadete != null)
+			{
+				_DB.cadeteria.Cadetes.Remove(unCadete);
+				_DB.guardarCadetes(_DB.cadeteria.Cadetes);
+			}
+			return Redirect("Index");
+		}
 	}
 }

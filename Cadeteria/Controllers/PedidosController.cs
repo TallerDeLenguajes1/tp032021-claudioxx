@@ -21,16 +21,18 @@ namespace Cadeteria.Controllers
 			return View(_DB.cadeteria);
 		}
 
-		public IActionResult CrearPedido(string nombre, string direccion, double telefono, string observaciones, int idCadete)
+		public IActionResult CrearPedido(string nombre, string direccion, double telefono, string observaciones, int idCadete, int dni)
 		{
 			if (nombre != null && direccion != null && observaciones != null)
 			{
-				Pedido unPedido = new Pedido(_DB.cadeteria.Pedidos.Count() + 1, observaciones, nombre, direccion, telefono);
+				//Cliente unCliente = new Cliente(dni, nombre,direccion,telefono);
+				Pedido unPedido = new Pedido(_DB.cadeteria.Pedidos.Count() + 1, observaciones,dni,nombre,direccion,telefono);
 				_DB.cadeteria.Pedidos.Add(unPedido);
 				Cadete unCadete = _DB.cadeteria.Cadetes.Find(a => a.Id == idCadete);
 				if (unCadete != null)
 				{
 					unCadete.Pedidos.Add(unPedido);
+					_DB.guardarCadetes(_DB.cadeteria.Cadetes);
 				}
 				_DB.guardarPedidos(_DB.cadeteria.Pedidos);
 				return Redirect("Index");
@@ -48,6 +50,7 @@ namespace Cadeteria.Controllers
 				if(!unCadete.Pedidos.Exists(a => a.Nro == IdPedido))
 				{
 					unCadete.Pedidos.Add(unPedido);
+					_DB.guardarCadetes(_DB.cadeteria.Cadetes);
 				}
 			}
 			return Redirect("Index");

@@ -13,6 +13,13 @@ namespace Cadeteria.Models
 		private List<Pedido> pedidos;
 		private double jornal;
 
+		public int Id { get => id; set => id = value; }
+		public string Nombre { get => nombre; set => nombre = value; }
+		public string Direccion { get => direccion; set => direccion = value; }
+		public double Telefono { get => telefono; set => telefono = value; }
+		public List<Pedido> Pedidos { get => pedidos; set => pedidos = value; }
+
+
 		public Cadete(int id, string nombre, string direccion, double telefono)
 		{
 			this.id = id;
@@ -22,12 +29,8 @@ namespace Cadeteria.Models
 			this.Pedidos = new List<Pedido>();
 		}
 
-		public int Id { get => id; set => id = value; }
-		public string Nombre { get => nombre; set => nombre = value; }
-		public string Direccion { get => direccion; set => direccion = value; }
-		public double Telefono { get => telefono; set => telefono = value; }
-		public List<Pedido> Pedidos { get => pedidos; set => pedidos = value; }
-
+		public Cadete() { }
+		
 		public void agregarPedido(Pedido unPedido)
 		{
 			Pedidos.Add(unPedido);

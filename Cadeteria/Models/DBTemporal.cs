@@ -30,8 +30,8 @@ namespace Cadeteria.Models
 			try
 			{
 				string _path = @"Cadetes";
-				string cadetesJson = JsonSerializer.Serialize(cadetes);
-				using (FileStream miArchivo = new FileStream(_path, FileMode.OpenOrCreate))
+				string cadetesJson = JsonSerializer.Serialize(cadetes,new JsonSerializerOptions { WriteIndented = true });
+				using (FileStream miArchivo = new FileStream(_path, FileMode.Create))
 				{
 					using (StreamWriter strWriter = new StreamWriter(miArchivo))
 					{
@@ -78,7 +78,7 @@ namespace Cadeteria.Models
 			try
 			{
 				string _path = @"Pedidos";
-				string pedidosJson = JsonSerializer.Serialize(pedidos);
+				string pedidosJson = JsonSerializer.Serialize(pedidos,new JsonSerializerOptions { WriteIndented = true });
 				using (FileStream miArchivo = new FileStream(_path, FileMode.OpenOrCreate))
 				{
 					using (StreamWriter strWriter = new StreamWriter(miArchivo))
@@ -118,7 +118,6 @@ namespace Cadeteria.Models
 			{
 				Console.WriteLine(ex.Message);
 			}
-			int a = 0;
 			return (pedidosJson);
 		}	
 	}

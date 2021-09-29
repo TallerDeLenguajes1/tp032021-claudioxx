@@ -6,55 +6,59 @@
     <h1 class="display-4 text-center">Lista de Pedidos</h1>
 
     <div >
-        <a class="btn btn-primary" asp-action="CrearPedido"> Crear Pedido</a>
+        <a class="btn btn-primary mb-2" asp-action="CrearPedido"> Crear Pedido</a>
     </div>
 
-        <table class="table">
-            <thead>
+    <table class="table table-hover table-sm">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Observaciones</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Cadete</th>
+                <th scope="col"> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var unPedido in Model.Pedidos)
+            {
+                <form asp-action="AsignarCadeteAPedido">
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Observaciones</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Cadete</th>
-                    <th scope="col"> </th>
+                    <input id="IdPedido" name="IdPedido" type="hidden" value="@unPedido.Nro">
+                    <th scope="row"> @unPedido.Nro </th>
+                    <td> @unPedido.Cliente.Nombre  </td>
+                    <td> @unPedido.Observaciones </td>
+                    <td> @unPedido.Estado </td>
+                    <td>
+                        <select class="custom-select" name="IdCadete">
+                            <option hidden selected="selected">Seleccione un cadete</option>
+                            <optgroup label="Asignado">
+                                @foreach (Cadete unCadete in Model.Cadetes)
+//Problemas al cargar cadetes de la base de datos, cuando uso contains es como que el cadete
+//no contiene los pedidos guardados, pero revisando las variables si esta... no lo se rick.
+                                    //if (unCadete.Pedidos.Contains(unPedido))
+                                    if (unCadete.Pedidos.Find(pedido => pedido.Nro == unPedido.Nro) != null)
+                                    {
+                                        <option selected value="@unCadete.Id">@unCadete.Nombre</option>
+                                    }
+                            </optgroup>
+                            <optgroup label="Sin Asignar">
+                                @foreach (Cadete unCadete in Model.Cadetes)
+                                    //if (!unCadete.Pedidos.Contains(unPedido))
+                                    if (unCadete.Pedidos.Find(pedido => pedido.Nro == unPedido.Nro) == null)
+                                    {
+                                        <option value="@unCadete.Id">@unCadete.Nombre</option>
+                                    }
+                            </optgroup>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-primary">Asignar</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var unPedido in Model.Pedidos)
-                {
-                    <form asp-action="AsignarCadeteAPedido">
-                        <tr>
-                            <input id="IdPedido" name="IdPedido" type="hidden" value="@unPedido.Nro">
-                            <th scope="row"> @unPedido.Nro </th>
-                            <td>@unPedido.Cliente.Nombre </td>
-                            <td> @unPedido.Observaciones </td>
-                            <td> @unPedido.Estado </td>
-                            <td>
-                                <select class="custom-select" name="IdCadete">
-                                    <option hidden selected="selected">Seleccione un cadete</option>
-                                    <optgroup label="Asignado">
-                                        @foreach (Cadete unCadete in Model.Cadetes)
-                                            if (unCadete.Pedidos.Contains(unPedido))
-                                            {
-                                                <option selected value="@unCadete.Id">@unCadete.Nombre</option>
-                                            }
-                                    </optgroup>
-                                    <optgroup label="Sin Asignar">
-                                        @foreach (Cadete unCadete in Model.Cadetes)
-                                            if (!unCadete.Pedidos.Contains(unPedido))
-                                            {
-                                                <option value="@unCadete.Id">@unCadete.Nombre</option>
-                                            }
-                                    </optgroup>
-                                </select>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-primary">Asignar</button>
-                            </td>
-                        </tr>
-                    </form>
-                }
-            </tbody>
-        </table>
+                </form>
+            }
+        </tbody>
+    </table>
 </div>
