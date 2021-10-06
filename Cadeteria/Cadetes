@@ -1,9 +1,35 @@
 [
   {
     "Id": 1,
-    "Nombre": "Claudio",
-    "Direccion": "ejercito del norte",
-    "Telefono": 3814589387,
+    "Nombre": "nora",
+    "Direccion": "chacabuco",
+    "Telefono": 3814589358,
     "Pedidos": []
+  },
+  {
+    "Id": 2,
+    "Nombre": "claudio",
+    "Direccion": "ejercito del norte",
+    "Telefono": 654546,
+    "Pedidos": []
+  },
+  {
+    "Id": 3,
+    "Nombre": "jose",
+    "Direccion": "jujuy",
+    "Telefono": 654654654,
+    "Pedidos": [
+      {
+        "Nro": 1,
+        "Estado": 0,
+        "Observaciones": "sanguche de milanga",
+        "Cliente": {
+          "Id": 654654,
+          "Nombre": "Jose",
+          "Direccion": "chacabuco",
+          "Telefono": 12456789
+        }
+      }
+    ]
   }
 ]

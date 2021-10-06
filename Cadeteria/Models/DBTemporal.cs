@@ -9,8 +9,12 @@ namespace Cadeteria.Models
 {
 	public class DBTemporal
 	{
+		private string PathCadetes = @"Cadetes";
+		private string PathPedidos = @"Pedidos";
+
 
 		public Cadeteria cadeteria { get; set; }
+
 
 		public DBTemporal()
 		{
@@ -29,9 +33,8 @@ namespace Cadeteria.Models
 		{
 			try
 			{
-				string _path = @"Cadetes";
 				string cadetesJson = JsonSerializer.Serialize(cadetes,new JsonSerializerOptions { WriteIndented = true });
-				using (FileStream miArchivo = new FileStream(_path, FileMode.Create))
+				using (FileStream miArchivo = new FileStream(PathCadetes, FileMode.Create))
 				{
 					using (StreamWriter strWriter = new StreamWriter(miArchivo))
 					{
@@ -52,16 +55,17 @@ namespace Cadeteria.Models
 			List<Cadete> cadetesJson = null;
 			try
 			{ 
-				string _path = @"Cadetes";
-				if (File.Exists(_path))
+				if (File.Exists(PathCadetes))
 				{
-					using (FileStream miArchivo = new FileStream(_path,FileMode.Open))
+					using (FileStream miArchivo = new FileStream(PathCadetes, FileMode.Open))
 					{
 						using (StreamReader strReader = new StreamReader(miArchivo))
 						{
 							string strCadetes = strReader.ReadToEnd();
 							
 							cadetesJson = JsonSerializer.Deserialize<List<Cadete>>(strCadetes);
+							strReader.Close();
+							strReader.Dispose();
 						}
 					}
 				}
@@ -77,9 +81,8 @@ namespace Cadeteria.Models
 		{
 			try
 			{
-				string _path = @"Pedidos";
 				string pedidosJson = JsonSerializer.Serialize(pedidos,new JsonSerializerOptions { WriteIndented = true });
-				using (FileStream miArchivo = new FileStream(_path, FileMode.OpenOrCreate))
+				using (FileStream miArchivo = new FileStream(PathPedidos, FileMode.Create))
 				{
 					using (StreamWriter strWriter = new StreamWriter(miArchivo))
 					{
@@ -99,17 +102,18 @@ namespace Cadeteria.Models
 		{
 			List<Pedido> pedidosJson = null;
 			try
-			{
-				string _path = @"Pedidos";
-				if (File.Exists(_path))
+			{	
+				if (File.Exists(PathPedidos))
 				{
-					using (FileStream miArchivo = new FileStream(_path, FileMode.Open))
+					using (FileStream miArchivo = new FileStream(PathPedidos, FileMode.Open))
 					{
 						using (StreamReader strReader = new StreamReader(miArchivo))
 						{
 							string strPedidos = strReader.ReadToEnd();
 
 							pedidosJson = JsonSerializer.Deserialize<List<Pedido>>(strPedidos);
+							strReader.Close();
+							strReader.Dispose();
 						}
 					}
 				}

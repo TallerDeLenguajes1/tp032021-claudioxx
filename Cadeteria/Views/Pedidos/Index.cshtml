@@ -37,6 +37,7 @@
                                 @foreach (Cadete unCadete in Model.Cadetes)
 //Problemas al cargar cadetes de la base de datos, cuando uso contains es como que el cadete
 //no contiene los pedidos guardados, pero revisando las variables si esta... no lo se rick.
+
                                     //if (unCadete.Pedidos.Contains(unPedido))
                                     if (unCadete.Pedidos.Find(pedido => pedido.Nro == unPedido.Nro) != null)
                                     {
@@ -45,6 +46,7 @@
                             </optgroup>
                             <optgroup label="Sin Asignar">
                                 @foreach (Cadete unCadete in Model.Cadetes)
+
                                     //if (!unCadete.Pedidos.Contains(unPedido))
                                     if (unCadete.Pedidos.Find(pedido => pedido.Nro == unPedido.Nro) == null)
                                     {
