@@ -2,12 +2,12 @@
   {
     "Nro": 1,
     "Estado": 0,
-    "Observaciones": "sanguche de milanga",
+    "Observaciones": "sanguche",
     "Cliente": {
-      "Id": 654654,
-      "Nombre": "Jose",
+      "Id": 666,
+      "Nombre": "claudio",
       "Direccion": "chacabuco",
-      "Telefono": 12456789
+      "Telefono": 654654654
     }
   }
 ]

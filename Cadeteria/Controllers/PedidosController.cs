@@ -61,7 +61,10 @@ namespace Cadeteria.Controllers
 			Cadete CadeteaQuitarPedido = _DB.cadeteria.Cadetes.Find(unCadete => unCadete.Pedidos.Exists(unPedido => unPedido.Nro == IdPedido));
 			if(CadeteaQuitarPedido != null)
 			{
-				CadeteaQuitarPedido.Pedidos.Remove(_DB.cadeteria.Pedidos.Find(unPedido => unPedido.Nro == IdPedido));
+				Pedido PedidoAQuitar = _DB.cadeteria.Pedidos.Find(unPedido => unPedido.Nro == IdPedido);
+				//Al parecer ni el metodo remove ni constains me funcionan luego de los objetos se creen en base al JSON, si o si 
+				//debo usar metodos que reciban un predicado. :'/
+				CadeteaQuitarPedido.Pedidos.RemoveAll(unPedido => unPedido.Nro == IdPedido);
 			}
 		}
 
