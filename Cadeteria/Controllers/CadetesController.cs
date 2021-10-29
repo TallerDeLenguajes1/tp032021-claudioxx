@@ -10,15 +10,17 @@ namespace Cadeteria.Controllers
 	public class CadetesController : Controller
 	{
 		private readonly DBTemporal _DB;
+		private readonly List<Cadete> _RepoCadetes;
 
-		public CadetesController(DBTemporal DB)
+		public CadetesController(DBTemporal DB,List<Cadete> RepoCadetes)
 		{
 			_DB = DB;
+			_RepoCadetes = RepoCadetes;
 		}
 
 		public IActionResult Index()
 		{
-			return View(_DB.cadeteria.Cadetes);
+			return View(_RepoCadetes);
 		}
 
 		public IActionResult CrearCadete(string nombre, string direccion, double telefono)

@@ -17,6 +17,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Direccion</th>
+                <th scope="col">Telefono</th>
                 <th scope="col">Cantidad de pedidos</th>
                 <th scope="col">Accion</th>
             </tr>
@@ -28,7 +29,8 @@
                         <td> @item.Id</td>
                         <td>@item.Nombre</td>
                         <td> @item.Direccion</td>
-                        <td> @item.Pedidos.Count() </td>
+                        <td> @item.Telefono</td>
+                        <td> 0 </td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-3">
                                 <form class="mx-1" asp-action="SelectCadeteAEditar">
